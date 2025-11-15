@@ -35,7 +35,7 @@ try {
         $response['data'] = $turfs;
     } else {
         $response['status'] = "empty";
-        $response['data'] = "No turfs found";
+        $response['data'] = [];
     }
 
     echo json_encode($response);
