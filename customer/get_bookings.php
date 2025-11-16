@@ -39,7 +39,7 @@ $query = $conn->prepare("
         b.id, b.date, b.start_time, b.end_time, b.duration, 
         b.total_amount, b.advance_amount, b.created_at,
         t.id AS turf_id, t.name AS turf_name, t.image AS turf_image, 
-        t.area AS turf_area, t.price_per_hour, t.full_address
+        t.area AS turf_area, t.price_per_hour, t.full_address, t.google_map_link AS map_link
     FROM bookings b
     JOIN turfs t ON b.turf_id = t.id
     WHERE b.user_id = ?
@@ -64,9 +64,8 @@ while ($row = $result->fetch_assoc()) {
         "turf" => [
             "id" => $row['turf_id'],
             "name" => $row['turf_name'],
-            "image" => $row['turf_image'],
-            "area" => $row['turf_area'],
-            "price_per_hour" => $row['price_per_hour']
+            "address" => $row['full_address'],
+            "map_link" => $row['map_link'],
         ]
     ];
 }
